@@ -9,7 +9,7 @@ import 'package:flutter_app/routes/view.dart';
 class TemplateList {
   static Future<PostEntity> fetchTemplateListData(int page, int count) async {
     final response = await http.get(
-        '${AppConstant.HOST}${AppConstant.URL_TEMPLATE_LIST}?page=${page}&item_count=${count}');
+        '${AppConstant.HOST}${AppConstant.URL_TEMPLATE_LIST}?page=$page&item_count=$count');
     final responseJson = json.decode(response.body);
     return new PostEntity.fromJson(responseJson);
   }
@@ -21,7 +21,7 @@ class TemplateList {
         Navigator.push(
           context,
           PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+            transitionDuration: Duration(milliseconds: 500),
             pageBuilder: (
               BuildContext context,
               Animation animation,

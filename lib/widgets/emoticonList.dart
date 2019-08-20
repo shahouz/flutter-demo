@@ -10,7 +10,7 @@ import 'package:flutter_app/models/listModel.dart';
 class EmoticonList {
   static Future<PostEntity> fetchPackageData(int page, int count) async {
     final response = await http.get(
-        '${AppConstant.HOST}${AppConstant.URL_TOPIC}?page=${page}&item_count=${count}');
+        '${AppConstant.HOST}${AppConstant.URL_TOPIC}?page=$page&item_count=$count');
     final responseJson = json.decode(response.body);
     return new PostEntity.fromJson(responseJson);
   }

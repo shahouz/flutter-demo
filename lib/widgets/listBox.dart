@@ -27,9 +27,9 @@ class ListBox {
               );
             },
             child: Text(
-              "更多",
+              AppConstant.LANG_MORE,
               style: TextStyle(
-                fontSize: 12.0,
+                fontSize: AppConstant.FONT_12,
               ),
               textAlign: TextAlign.right,
             ),
@@ -50,7 +50,7 @@ class ListBox {
             child: Text(
               model.title,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: AppConstant.FONT_16,
                 color: Color(AppConstant.WORD_GRAY),
                 fontWeight: FontWeight.w300,
               ),
@@ -70,7 +70,7 @@ class ListBox {
       List<dynamic> list, bool hasText, BuildContext con) {
     var result = new List<Widget>();
     for (Map<String, dynamic> item in list) {
-      result.add(EmoticonItem.emoticonItem(item, con));
+      result.add(EmoticonItem.create(item, con));
     }
     return result;
   }

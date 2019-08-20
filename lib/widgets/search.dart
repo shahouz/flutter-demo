@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
 import 'package:flutter_app/routes/searchResult.dart';
-import 'package:flutter_app/routes/package.dart';
 
 class Search {
   static _searchInput(BuildContext context) {
@@ -31,7 +30,7 @@ class Search {
         Navigator.push(
           context,
           PageRouteBuilder(
-            transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+            transitionDuration: Duration(milliseconds: 500),
             pageBuilder: (BuildContext context, Animation animation,
                 Animation secondaryAnimation) {
               return new FadeTransition(

@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: must_be_immutable
 class View extends StatefulWidget {
   var url;
 
   View(String url) {
     this.url = url;
+  }
+
+  String getUrl() {
+    return this.url;
   }
 
   @override

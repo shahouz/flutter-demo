@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_app/routes/view.dart';
 import 'package:flutter_app/routes/package.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class EmoticonItem {
-  static isNotBlank(String text) {
+  static _isNotBlank(String text) {
     return text != null && text.isNotEmpty;
   }
 
@@ -20,7 +20,7 @@ class EmoticonItem {
           color: Color(AppConstant.BORDER_GRAY_2),
           width: 1.0,
         ),
-        image: isNotBlank(url)
+        image: _isNotBlank(url)
             ? DecorationImage(
                 image: new NetworkImage(url),
                 fit: BoxFit.contain,
@@ -38,20 +38,37 @@ class EmoticonItem {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-          fontSize: 14.0,
+          fontSize: AppConstant.FONT_14,
           color: Color(AppConstant.WORD_GRAY),
         ),
       ),
     );
   }
 
-  static emoticonItem(dynamic item, BuildContext context) {
+  // 点击跳转
+  static _redirect(Widget redirectPage, BuildContext context) {
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: Duration(milliseconds: 500),
+        pageBuilder: (
+          BuildContext context,
+          Animation animation,
+          Animation secondaryAnimation,
+        ) {
+          return redirectPage;
+        },
+      ),
+    );
+  }
+
+  static create(dynamic item, BuildContext context) {
     var widgetList = new List<Widget>();
     var emoticonThumbnailUrl = item['emoticon_thumbnail_url'];
     var thumbnailUrl = item['thumbnail_url'];
     var name = item['name'];
     var finalUrl =
-        emoticonThumbnailUrl != null ? emoticonThumbnailUrl : thumbnailUrl;
+        _isNotBlank(emoticonThumbnailUrl) ? emoticonThumbnailUrl : thumbnailUrl;
     var emoticonId = item['emoticon_id'];
     var id = emoticonId != null ? emoticonId : item['id'];
 
@@ -59,9 +76,10 @@ class EmoticonItem {
     var redirectPage = Package(id.toString());
     // 是否显示标题
     widgetList.add(_avatar(finalUrl));
-    if (name != '' && name != null) {
+    if (_isNotBlank(name)) {
       widgetList.add(_text(name));
     }
+
     return Container(
       margin: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 10.0),
       child: GestureDetector(
@@ -70,21 +88,7 @@ class EmoticonItem {
           mainAxisSize: MainAxisSize.min,
           children: widgetList,
         ),
-        onTap: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
-              pageBuilder: (
-                  BuildContext context,
-                  Animation animation,
-                  Animation secondaryAnimation,
-                  ) {
-                return redirectPage;
-              },
-            ),
-          );
-        },
+        onTap: _redirect(redirectPage, context),
       ),
     );
   }
