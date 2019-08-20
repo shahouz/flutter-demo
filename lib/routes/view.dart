@@ -35,13 +35,18 @@ class ViewPage extends State<View> {
         title: new Text(AppConstant.APP_NAME),
         backgroundColor: Colors.black,
       ),
-      body: Container(
-        color: Colors.black,
-        child: Center(
-          child: pic != null && pic.isNotEmpty ? Image.network(
-            this.url,
-            width: double.infinity,
-          ) : Container(),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Container(
+          color: Colors.black,
+          child: Center(
+            child: pic != null && pic.isNotEmpty ? Image.network(
+              this.url,
+              width: double.infinity,
+            ) : Container(),
+          ),
         ),
       ),
       backgroundColor: Color(AppConstant.BG_GRAY),

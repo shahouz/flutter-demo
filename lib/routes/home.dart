@@ -32,12 +32,12 @@ class HomePage extends State<Home> {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+                  transitionDuration: Duration(milliseconds: 500),
                   pageBuilder: (
-                      BuildContext context,
-                      Animation animation,
-                      Animation secondaryAnimation,
-                      ) {
+                    BuildContext context,
+                    Animation animation,
+                    Animation secondaryAnimation,
+                  ) {
                     return new Category();
                   },
                 ),
@@ -66,12 +66,12 @@ class HomePage extends State<Home> {
               Navigator.push(
                 context,
                 PageRouteBuilder(
-                  transitionDuration: Duration(milliseconds: 500), //动画时间为500毫秒
+                  transitionDuration: Duration(milliseconds: 500),
                   pageBuilder: (
-                      BuildContext context,
-                      Animation animation,
-                      Animation secondaryAnimation,
-                      ) {
+                    BuildContext context,
+                    Animation animation,
+                    Animation secondaryAnimation,
+                  ) {
                     return new Category();
                   },
                 ),

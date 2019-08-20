@@ -8,7 +8,7 @@ class Search {
       child: new Container(
         alignment: Alignment.center,
         child: Text(
-          "搜索",
+          AppConstant.LANG_SEARCH,
           style: TextStyle(
             color: Color(AppConstant.WORD_GRAY_LIGHT),
             fontSize: 14.0,
@@ -31,12 +31,14 @@ class Search {
           context,
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 500),
-            pageBuilder: (BuildContext context, Animation animation,
-                Animation secondaryAnimation) {
+            pageBuilder: (
+              BuildContext context,
+              Animation animation,
+              Animation secondaryAnimation,
+            ) {
               return new FadeTransition(
-                //使用渐隐渐入过渡
                 opacity: animation,
-                child: SearchResult(), //路由B
+                child: SearchResult(),
               );
             },
           ),

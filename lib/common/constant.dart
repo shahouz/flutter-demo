@@ -30,6 +30,7 @@ class AppConstant {
   static const String LANG_RECOMMEND = '推荐';
   static const String LANG_NEWEST = '最新';
   static const String LANG_HISTORY_EMPTY = '历史记录有空';
-  static const String APP_NAME = "斗图神器";
+  static const String APP_NAME = '斗图神器';
   static const String LANG_MORE = '更多';
+  static const String LANG_SEARCH = '搜索';
 }

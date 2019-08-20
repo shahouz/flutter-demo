@@ -7,12 +7,25 @@ import 'package:flutter_app/widgets/listBox.dart';
 import 'package:flutter_app/widgets/loading.dart';
 import 'package:flutter_app/models/listModel.dart';
 
+// ignore: must_be_immutable
 class TopicDetail extends StatefulWidget {
+  var id;
+
+  TopicDetail(int id) {
+    this.id = id;
+  }
+
   @override
-  createState() => new TopicDetailPage();
+  createState() => new TopicDetailPage(id);
 }
 
 class TopicDetailPage extends State<TopicDetail> {
+  var id;
+
+  TopicDetailPage(int id) {
+    this.id = id;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -24,7 +37,7 @@ class TopicDetailPage extends State<TopicDetail> {
       ),
       body: new ListView(
         children: <Widget>[
-          TopicDetailList.create(context),
+          TopicDetailList.create(this.id, context),
         ],
       ),
       backgroundColor: Color(AppConstant.BG_GRAY),
@@ -40,9 +53,9 @@ class TopicDetailList {
     return new PostEntity.fromJson(responseJson);
   }
 
-  static create(BuildContext context) {
+  static create(int id, BuildContext context) {
     return new FutureBuilder<PostEntity>(
-      future: fetchDetailList(170, 3),
+      future: fetchDetailList(id, 3),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Map<String, dynamic> data = snapshot.data.data;

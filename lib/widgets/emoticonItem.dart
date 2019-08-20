@@ -45,20 +45,22 @@ class EmoticonItem {
     );
   }
 
-  static create(dynamic item, BuildContext context) {
+  static create(dynamic item, BuildContext context, bool hasText) {
     var widgetList = new List<Widget>();
     var emoticonThumbnailUrl = item['emoticon_thumbnail_url'];
     var thumbnailUrl = item['thumbnail_url'];
     var name = item['name'];
-    var finalUrl = isNotBlank(emoticonThumbnailUrl) ?  emoticonThumbnailUrl : thumbnailUrl;
+    var finalUrl =
+        isNotBlank(emoticonThumbnailUrl) ? emoticonThumbnailUrl : thumbnailUrl;
     var emoticonId = item['emoticon_id'];
     var id = emoticonId != null ? emoticonId : item['id'];
 
     // 是否显示标题
     widgetList.add(_avatar(finalUrl));
-    if (name != '' && name != null) {
+    if (hasText) {
       widgetList.add(_text(name));
     }
+
     return Container(
       margin: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 10.0),
       child: GestureDetector(
@@ -70,7 +72,9 @@ class EmoticonItem {
         onTap: () {
           Navigator.push(
             context,
-            new MaterialPageRoute(builder: (context) => Package(id.toString())),
+            new MaterialPageRoute(
+                builder: (context) =>
+                    hasText ? Package(id.toString()) : View(finalUrl)),
           );
         },
       ),

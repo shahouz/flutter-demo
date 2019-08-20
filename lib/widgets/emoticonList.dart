@@ -15,7 +15,6 @@ class EmoticonList {
     return new PostEntity.fromJson(responseJson);
   }
 
-  // 表情包列表
   static create(BuildContext context) {
     return new FutureBuilder<PostEntity>(
       future: fetchPackageData(1, 3),

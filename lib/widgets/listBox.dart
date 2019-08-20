@@ -7,7 +7,7 @@ import 'package:flutter_app/routes/topicDetail.dart';
 class ListBox {
   static _more(ListModel model) {
     var id = model.id;
-    var redirectPage = TopicDetail();
+    var redirectPage = TopicDetail(id);
     return id != null
         ? GestureDetector(
             onTap: () {
@@ -15,7 +15,6 @@ class ListBox {
                 model.context,
                 PageRouteBuilder(
                   transitionDuration: Duration(milliseconds: 500),
-                  //动画时间为500毫秒
                   pageBuilder: (
                     BuildContext context,
                     Animation animation,
@@ -70,7 +69,7 @@ class ListBox {
       List<dynamic> list, bool hasText, BuildContext con) {
     var result = new List<Widget>();
     for (Map<String, dynamic> item in list) {
-      result.add(EmoticonItem.create(item, con));
+      result.add(EmoticonItem.create(item, con, hasText));
     }
     return result;
   }
