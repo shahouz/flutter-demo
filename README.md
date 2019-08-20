@@ -1,2 +1,2 @@
 # flutter-demo
- emoticon app
+ 使用flutter开发的表情包应用。
