@@ -20,6 +20,7 @@ class AppConstant {
 
   // 首页表情包列表
   static const String URL_TOPIC = '/topic/list';
+  static const String URL_TOPIC_DETAIL = '/topic/detail';
   static const String URL_RECOMMEND = '/recommend/list';
   static const String URL_NEWEST = '/hottest/list';
   static const String URL_TEMPLATE_LIST = '/template/list';
@@ -29,6 +30,6 @@ class AppConstant {
   static const String LANG_RECOMMEND = '推荐';
   static const String LANG_NEWEST = '最新';
   static const String LANG_HISTORY_EMPTY = '历史记录有空';
-  static const String APP_NAME = "斗图法宝";
+  static const String APP_NAME = "斗图神器";
   static const String LANG_MORE = '更多';
 }

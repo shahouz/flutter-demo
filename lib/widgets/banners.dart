@@ -25,7 +25,6 @@ class Banners {
         },
         pagination: SwiperPagination(
           alignment: Alignment.bottomCenter,
-          margin: EdgeInsets.only(bottom: 20.0, right: 20.0),
         ),
         autoplayDisableOnInteraction: true,
       ),

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/widgets/emoticonItem.dart';
 import 'package:flutter_app/common/constant.dart';
 import 'package:flutter_app/models/listModel.dart';
-import 'package:flutter_app/routes/package.dart';
+import 'package:flutter_app/routes/topicDetail.dart';
 
 class ListBox {
   static _more(ListModel model) {
     var id = model.id;
-    var redirectPage = Package(id.toString());
+    var redirectPage = TopicDetail();
     return id != null
         ? GestureDetector(
             onTap: () {

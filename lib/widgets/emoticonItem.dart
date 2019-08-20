@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
-import 'package:flutter_app/routes/package.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_app/routes/view.dart';
+import 'package:flutter_app/routes/package.dart';
 
 class EmoticonItem {
-  static _isNotBlank(String text) {
+  static isNotBlank(String text) {
     return text != null && text.isNotEmpty;
   }
 
@@ -20,7 +20,7 @@ class EmoticonItem {
           color: Color(AppConstant.BORDER_GRAY_2),
           width: 1.0,
         ),
-        image: _isNotBlank(url)
+        image: isNotBlank(url)
             ? DecorationImage(
                 image: new NetworkImage(url),
                 fit: BoxFit.contain,
@@ -45,41 +45,20 @@ class EmoticonItem {
     );
   }
 
-  // 点击跳转
-  static _redirect(Widget redirectPage, BuildContext context) {
-    Navigator.push(
-      context,
-      PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
-        pageBuilder: (
-          BuildContext context,
-          Animation animation,
-          Animation secondaryAnimation,
-        ) {
-          return redirectPage;
-        },
-      ),
-    );
-  }
-
   static create(dynamic item, BuildContext context) {
     var widgetList = new List<Widget>();
     var emoticonThumbnailUrl = item['emoticon_thumbnail_url'];
     var thumbnailUrl = item['thumbnail_url'];
     var name = item['name'];
-    var finalUrl =
-        _isNotBlank(emoticonThumbnailUrl) ? emoticonThumbnailUrl : thumbnailUrl;
+    var finalUrl = isNotBlank(emoticonThumbnailUrl) ?  emoticonThumbnailUrl : thumbnailUrl;
     var emoticonId = item['emoticon_id'];
     var id = emoticonId != null ? emoticonId : item['id'];
 
-    // 跳转的页面
-    var redirectPage = Package(id.toString());
     // 是否显示标题
     widgetList.add(_avatar(finalUrl));
-    if (_isNotBlank(name)) {
+    if (name != '' && name != null) {
       widgetList.add(_text(name));
     }
-
     return Container(
       margin: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 10.0),
       child: GestureDetector(
@@ -88,7 +67,12 @@ class EmoticonItem {
           mainAxisSize: MainAxisSize.min,
           children: widgetList,
         ),
-        onTap: _redirect(redirectPage, context),
+        onTap: () {
+          Navigator.push(
+            context,
+            new MaterialPageRoute(builder: (context) => Package(id.toString())),
+          );
+        },
       ),
     );
   }
