@@ -20,22 +20,12 @@ class StatementPage extends State<Statement> {
             child: Column(
               children: <Widget>[
                 Container(
-                  child: Text(
-                    '斗图法宝\n',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
-                ),
-                Container(
                   padding: EdgeInsets.only(
                     bottom: 50.0,
                   ),
-                  child: Text(
-                      '斗图法宝是一个可查看表情和自制表情的软件。您可以在这里找到有趣的表情，也可以快速制作表情，让您的生活更加欢乐！\n\n法律声明\n\n部分表情来自网络，其版权归原作者所有。由于一些图片几经转载，导致原作者信息不详。若版权方有异议，请及时反馈，我们会尽快处理。\n\n也欢迎您提供宝贵的意见和建议，使我们能越做越好。',
+                  child: Text(AppConstant.LANG_DESC,
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: AppConstant.FONT_16,
                         color: Color(AppConstant.WORD_GRAY),
                       )),
                 ),

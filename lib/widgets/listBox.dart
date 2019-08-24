@@ -3,6 +3,7 @@ import 'package:flutter_app/widgets/emoticonItem.dart';
 import 'package:flutter_app/common/constant.dart';
 import 'package:flutter_app/models/listModel.dart';
 import 'package:flutter_app/routes/topicDetail.dart';
+import 'package:flutter_app/common/stringUtils.dart';
 
 class ListBox {
   static _more(ListModel model) {
@@ -39,7 +40,7 @@ class ListBox {
   // 标题栏
   static _titleBox(ListModel model) {
     return Container(
-      padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+      padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
       alignment: Alignment.centerLeft,
       child: Flex(
         direction: Axis.horizontal,
@@ -81,7 +82,7 @@ class ListBox {
     BuildContext context = model.context;
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 10.0),
+      padding: EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 10.0),
       child: Wrap(
         direction: Axis.horizontal,
         crossAxisAlignment: WrapCrossAlignment.start,
@@ -95,6 +96,12 @@ class ListBox {
 
   // 列表
   static create(ListModel model) {
+    var widgetList = new List<Widget>();
+    if (StringUtils.isNotBlank(model.title)) {
+      widgetList.add(_titleBox(model));
+    }
+    widgetList.add(_contentBox(model));
+
     return Container(
       margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 10.0),
       decoration: BoxDecoration(
@@ -103,10 +110,7 @@ class ListBox {
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Column(
-        children: <Widget>[
-          _titleBox(model),
-          _contentBox(model),
-        ],
+        children: widgetList,
       ),
     );
   }

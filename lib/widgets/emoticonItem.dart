@@ -49,9 +49,10 @@ class EmoticonItem {
     var widgetList = new List<Widget>();
     var emoticonThumbnailUrl = item['emoticon_thumbnail_url'];
     var thumbnailUrl = item['thumbnail_url'];
+    var url = item['url'];
     var name = item['name'];
     var finalUrl =
-        isNotBlank(emoticonThumbnailUrl) ? emoticonThumbnailUrl : thumbnailUrl;
+        isNotBlank(emoticonThumbnailUrl) ? emoticonThumbnailUrl : (isNotBlank(thumbnailUrl) ? thumbnailUrl : url);
     var emoticonId = item['emoticon_id'];
     var id = emoticonId != null ? emoticonId : item['id'];
 

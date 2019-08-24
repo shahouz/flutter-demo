@@ -25,6 +25,7 @@ class AppConstant {
   static const String URL_NEWEST = '/hottest/list';
   static const String URL_TEMPLATE_LIST = '/template/list';
   static const String URL_PACKAGE_DETAIL = '/emoticon/detail';
+  static const String URL_SEARCH = '/search';
 
   // 文案
   static const String LANG_RECOMMEND = '推荐';
@@ -33,4 +34,5 @@ class AppConstant {
   static const String APP_NAME = '斗图神器';
   static const String LANG_MORE = '更多';
   static const String LANG_SEARCH = '搜索';
+  static const String LANG_DESC = '斗图神器是一个可查看表情和自制表情的软件。\n\n法律声明\n\n部分表情来自网络，其版权归原作者所有。由于一些图片几经转载，导致原作者信息不详。若版权方有异议，请及时反馈，我们会尽快处理。\n\n也欢迎您提供宝贵的意见和建议，使我们能越做越好。';
 }

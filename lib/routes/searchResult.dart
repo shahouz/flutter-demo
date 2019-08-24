@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_app/common/layoutUtils.dart';
+import 'package:flutter_app/models/PostEntity.dart';
+import 'package:flutter_app/models/listModel.dart';
+import 'package:flutter_app/widgets/listBox.dart';
+import 'package:http/http.dart' as http;
 
 class SearchResult extends StatefulWidget {
   @override
@@ -8,8 +14,26 @@ class SearchResult extends StatefulWidget {
 }
 
 class SearchPage extends State<SearchResult> {
+  var _data;
+
+  Future<PostEntity> _doSearch(String keyword) async {
+    final response = await http
+        .get('${AppConstant.HOST}${AppConstant.URL_SEARCH}?word=$keyword');
+    print('${AppConstant.HOST}${AppConstant.URL_SEARCH}?word=$keyword');
+    final responseJson = json.decode(response.body);
+    print(responseJson);
+    setState(() {
+      _data = new PostEntity.fromJson(responseJson);
+    });
+
+    print(_data.data);
+    print(_data.message);
+
+    return new PostEntity.fromJson(responseJson);
+  }
+
   // 搜索框
-  _searchBox() {
+  _searchBox(BuildContext context) {
     return Container(
       width: double.infinity,
       color: Color(AppConstant.BG_YELLOW),
@@ -32,9 +56,14 @@ class SearchPage extends State<SearchResult> {
           ),
         ),
         child: TextField(
+          onSubmitted: (String str) {
+            print("asd");
+            _doSearch(str);
+          },
+          textInputAction: TextInputAction.search,
           autofocus: true,
           decoration: InputDecoration(
-            labelText: "搜索",
+            labelText: AppConstant.LANG_SEARCH,
             labelStyle: TextStyle(
               color: Color(AppConstant.WORD_GRAY),
             ),
@@ -46,12 +75,27 @@ class SearchPage extends State<SearchResult> {
   }
 
   _keywordList() {
-    return Container();
+    var result;
+    var widget;
+    ListModel model = new ListModel();
+    if (_data != null) {
+      result = _data.data;
+      model.context = context;
+      model.hasText = false;
+      model.list = result['data'];
+      model.title = "";
+      widget = ListBox.create(model);
+    } else {
+      widget = Text("无内容");
+    }
+
+    return Container(
+      child: widget,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
@@ -61,7 +105,8 @@ class SearchPage extends State<SearchResult> {
       ),
       body: Column(
         children: <Widget>[
-          _searchBox(),
+          _searchBox(context),
+          LayoutUtils.blank10(),
           _keywordList(),
         ],
       ),
