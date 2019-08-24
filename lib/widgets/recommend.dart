@@ -1,11 +1,12 @@
-import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
 import 'package:flutter_app/models/PostEntity.dart';
-import 'dart:convert';
+import 'package:flutter_app/models/listModel.dart';
 import 'package:flutter_app/widgets/listBox.dart';
 import 'package:flutter_app/widgets/loading.dart';
-import 'package:flutter_app/models/listModel.dart';
+import 'package:http/http.dart' as http;
 
 class Recommend {
   static Future<PostEntity> fetchRecommendData(int page, int count) async {
@@ -22,10 +23,10 @@ class Recommend {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           Map<String, dynamic> data = snapshot.data.data;
-          List<dynamic> emoticons = data['data']['emoticons'];
+          List<dynamic> list = data['emoticons'];
           ListModel model = new ListModel();
           model.title = AppConstant.LANG_RECOMMEND;
-          model.list = emoticons;
+          model.list = list;
           model.context = context;
           model.hasText = true;
           return ListBox.create(model);

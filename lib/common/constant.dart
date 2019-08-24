@@ -16,16 +16,16 @@ class AppConstant {
   static const double FONT_12 = 12.0;
 
   // 接口
-  static const String HOST = 'https://service.magicemoticon.cccwei.com';
+  static const String HOST = 'http://upyun.wquanzhan.com';
 
   // 首页表情包列表
-  static const String URL_TOPIC = '/topic/list';
-  static const String URL_TOPIC_DETAIL = '/topic/detail';
-  static const String URL_RECOMMEND = '/recommend/list';
-  static const String URL_NEWEST = '/hottest/list';
-  static const String URL_TEMPLATE_LIST = '/template/list';
-  static const String URL_PACKAGE_DETAIL = '/emoticon/detail';
-  static const String URL_SEARCH = '/search';
+  static const String URL_TOPIC = '/topicList.json';
+  static const String URL_TOPIC_DETAIL = '/topicDetail.json';
+  static const String URL_RECOMMEND = '/recommend.json';
+  static const String URL_NEWEST = '/hottest.json';
+  static const String URL_TEMPLATE_LIST = '/template.json';
+  static const String URL_PACKAGE_DETAIL = '/emoticonDetail.json';
+  static const String URL_SEARCH = '/search.json';
 
   // 文案
   static const String LANG_RECOMMEND = '推荐';
