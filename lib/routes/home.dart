@@ -6,6 +6,7 @@ import 'package:flutter_app/widgets/newest.dart';
 import 'package:flutter_app/widgets/packageList.dart';
 import 'package:flutter_app/widgets/recommend.dart';
 import 'package:flutter_app/widgets/search.dart';
+import 'package:flutter_app/common/layoutUtils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatefulWidget {
@@ -98,13 +99,6 @@ class HomePage extends State<Home> {
     );
   }
 
-  _blank10() {
-    return Container(
-      height: 10.0,
-      width: double.infinity,
-    );
-  }
-
   _yard(BuildContext context) {
     var main = new List<Widget>();
     main.add(_tabBox());
@@ -118,7 +112,7 @@ class HomePage extends State<Home> {
   _station(BuildContext context) {
     return <Widget>[
       _tabBox(),
-      _blank10(),
+      LayoutUtils.blank10(),
       _flex('assets/cate1.png', 'assets/cate2.png', context),
       _flex('assets/cate3.png', 'assets/cate4.png', context),
       Newest.create(context),

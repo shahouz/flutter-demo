@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/constant.dart';
+import 'package:flutter_app/common/layoutUtils.dart';
 import 'package:flutter_app/models/PostEntity.dart';
 import 'package:flutter_app/models/listModel.dart';
 import 'package:flutter_app/widgets/listBox.dart';
@@ -28,13 +29,6 @@ class PackagePage extends State<Package> {
     this.id = id;
   }
 
-  _blank10() {
-    return Container(
-      height: 10.0,
-      width: double.infinity,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
@@ -47,7 +41,7 @@ class PackagePage extends State<Package> {
       ),
       body: new ListView(
         children: <Widget>[
-          _blank10(),
+          LayoutUtils.blank10(),
           PackageDetail.create(this.id, context),
         ],
       ),
