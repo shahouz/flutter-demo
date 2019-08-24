@@ -26,6 +26,7 @@ class AppConstant {
   static const String URL_TEMPLATE_LIST = '/template.json';
   static const String URL_PACKAGE_DETAIL = '/emoticonDetail.json';
   static const String URL_SEARCH = '/search.json';
+  static const String URL_KEYWORD = '/keyword.json';
 
   // 文案
   static const String LANG_RECOMMEND = '推荐';
